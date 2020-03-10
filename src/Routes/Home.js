@@ -54,6 +54,7 @@
           id
           medium_cover_image
           title
+          isLiked @client
           description_intro
       }
   }
@@ -70,7 +71,18 @@
 
           {loading && <Loading>loading....</Loading>}
           <Movies>
-          {!loading && data.movies && data.movies.map(m => <><Movie key={m.id}  bg={m.medium_cover_image} id={m.id} /></>)}
+            {!loading &&
+              data.movies &&
+              data.movies.map(m => (
+                <>
+                  <Movie
+                    key={m.id}
+                    isLiked={m.isLiked}
+                    bg={m.medium_cover_image}
+                    id={m.id}
+                  />
+                </>
+              ))}
           </Movies>
         </Container>
       );

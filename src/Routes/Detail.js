@@ -93,7 +93,7 @@ export default ({ bg }) => {
   return (
     <Container>
       <Column>
-        <Title>{loading ? "Loading...." : data.movie.title}</Title>
+        <Title>{loading ? "Loading...." :` ${data.movie.title} ${data.movie.isLiked?"💕":"🤢"}`}</Title>
         {!loading && (
           <Poster bg={!loading && data.movie.medium_cover_image}></Poster>
         )}
@@ -107,15 +107,9 @@ export default ({ bg }) => {
         )}
       </Column>
       {!loading && (
-        <Poster bg={!loading && data.movie.medium_cover_image}></Poster>
+        <Poster bg={!loading && data?.movie.medium_cover_image}></Poster>
       )}
-      {!loading&&data?.suggestions.map(sm => (
-        <Movies>
-        <Link to={`/${sm.id}`}>
-        <Poster key={sm.id} id={sm.id} bg={sm.medium_cover_image} />
-        </Link>
-        </Movies>
-      ))}
+
     </Container>
   );
 };
